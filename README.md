@@ -1,4 +1,4 @@
-# EVENTOS
+# EVENTS 
 
 ## ENGLISH
 
@@ -34,12 +34,8 @@ This project is under the MIT License, which means you can freely use, modify, a
 
 Remember to customize the sections according to the specific features of your project and provide the necessary information for other developers to understand, install, and contribute to it.
 
-
-
-
-
-ESPAÑOL
-# Eventos
+## ESPAÑOL
+# Events
 
 Este proyecto es una aplicación web para gestionar eventos que utiliza HTTPS para garantizar la seguridad de la comunicación. La interfaz está diseñada en español para facilitar su uso a los usuarios de habla hispana.
 
