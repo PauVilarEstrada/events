@@ -9,18 +9,20 @@ This project is a web application for managing events that uses HTTPS to ensure 
 Before you begin, make sure to have  [Node.js](https://nodejs.org/) installed on your machine. Then, follow these steps:
 
 1. Clone this repository to your local machine:
-   git clone https://github.com/tu-usuario/eventos-https.git
+   ```bash
+   git clone https://github.com/PauVilarEstrada/events.git
 
 Navigate to the project directory:
-cd events-https
+### cd events
 Install the necessary dependencies using npm:
-npm install
+### npm install
 This command will install all the required dependencies, including the necessary node_modules to run the application.
 
 ## Usage
 Once you have completed the installation, you can start the application by running the following command:
-npm start
-This will launch the application in your default browser. Open http://localhost:3000 to see the application in action.
+### npm start
+This will launch the application in your default browser. 
+### Open http://localhost:3000 to see the application in action.
 
 ## Contributions
 If you wish to contribute to this project, you are welcome to do so! Before submitting pull requests, make sure to follow our contribution guidelines. You can also report issues or suggest new features using the issues section.
@@ -48,21 +50,22 @@ Antes de comenzar, asegúrate de tener [Node.js](https://nodejs.org/) instalado 
 1. Clona este repositorio en tu máquina local:
 
    ```bash
-   git clone https://github.com/tu-usuario/eventos-https.git
+   git clone https://github.com/PauVilarEstrada/events.git
    
 Navega al directorio del proyecto:
-cd eventos-https
+### cd events
 
 Instala las dependencias necesarias utilizando npm:
-npm install
+### npm install
 
 Este comando instalará todas las dependencias necesarias, incluidos los node_modules necesarios para ejecutar la aplicación.
 
 ## Uso
 Una vez que hayas completado la instalación, puedes iniciar la aplicación ejecutando el siguiente comando:
-npm start
+### npm start
 
-Esto iniciará la aplicación en tu navegador predeterminado. Abre http://localhost:3000 para ver la aplicación en acción.
+Esto iniciará la aplicación en tu navegador predeterminado. 
+### Abre http://localhost:3000 para ver la aplicación en acción.
 Contribuciones:
 Si deseas contribuir a este proyecto, ¡te damos la bienvenida! Antes de enviar solicitudes de extracción, asegúrate de seguir nuestras pautas de contribución. También puedes informar problemas o sugerir nuevas funciones utilizando la sección de problemas.
 
