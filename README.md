@@ -12,17 +12,20 @@ Before you begin, make sure to have  [Node.js](https://nodejs.org/) installed on
    ```bash
    git clone https://github.com/PauVilarEstrada/events.git
 
-Navigate to the project directory:
-### cd events
-Install the necessary dependencies using npm:
-### npm install
+2. Navigate to the project directory:
+   ```bash
+   cd events
+3. Install the necessary dependencies using npm:
+    ```bash
+    npm install
 This command will install all the required dependencies, including the necessary node_modules to run the application.
 
 ## Usage
-Once you have completed the installation, you can start the application by running the following command:
-### npm start
+1. Once you have completed the installation, you can start the application by running the following command:
+    ```bash
+      npm start
 This will launch the application in your default browser. 
-### Open http://localhost:3000 to see the application in action.
+### http://localhost:3000 to see the application in action.
 
 ## Contributions
 If you wish to contribute to this project, you are welcome to do so! Before submitting pull requests, make sure to follow our contribution guidelines. You can also report issues or suggest new features using the issues section.
@@ -48,17 +51,20 @@ Antes de comenzar, asegúrate de tener [Node.js](https://nodejs.org/) instalado 
    ```bash
    git clone https://github.com/PauVilarEstrada/events.git
    
-Navega al directorio del proyecto:
-### cd events
+1. Navega al directorio del proyecto:
+    ```bash
+   cd events
 
-Instala las dependencias necesarias utilizando npm:
-### npm install
+3. Instala las dependencias necesarias utilizando npm:
+   ```bash
+    npm install
 
 Este comando instalará todas las dependencias necesarias, incluidos los node_modules necesarios para ejecutar la aplicación.
 
 ## Uso
-Una vez que hayas completado la instalación, puedes iniciar la aplicación ejecutando el siguiente comando:
-### npm start
+1. Una vez que hayas completado la instalación, puedes iniciar la aplicación ejecutando el siguiente comando:
+      ```bash
+   npm start
 
 Esto iniciará la aplicación en tu navegador predeterminado. 
 ### Abre http://localhost:3000 para ver la aplicación en acción.
