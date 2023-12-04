@@ -11,9 +11,6 @@ Before you begin, make sure to have Node.js installed on your machine. Then, fol
 Clone this repository to your local machine:
 git clone https://github.com/your-username/events-https.git
 Navigate to the project directory:
-
-bash
-Copy code
 cd events-https
 Install the necessary dependencies using npm:
 npm install
@@ -21,9 +18,6 @@ This command will install all the required dependencies, including the necessary
 
 Usage
 Once you have completed the installation, you can start the application by running the following command:
-
-bash
-Copy code
 npm start
 This will launch the application in your default browser. Open http://localhost:3000 to see the application in action.
 
