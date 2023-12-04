@@ -9,7 +9,6 @@ This project is a web application for managing events that uses HTTPS to ensure 
 Before you begin, make sure to have  [Node.js](https://nodejs.org/) installed on your machine. Then, follow these steps:
 
 1. Clone this repository to your local machine:
-```bash
    git clone https://github.com/tu-usuario/eventos-https.git
 
 Navigate to the project directory:
