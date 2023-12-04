@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/navigo/8.11.1/navigo.min.js"></script>
+    <title>Opiniones de Eventos</title>
+</head>
+
+</head>
+<body>
+<a href="/" class="button2">INICIO</a>
+<div id="ordenar-container">
+    <label for="ordenamiento">Ordenar por:</label>
+    <select class="form-select" id="ordenamiento">
+        <option value="id">ID</option>
+        <option value="puntuacion">Puntuación</option>
+    </select>
+    <button type="button" class="btn btn-primary" id="ordenar-btn">Ordenar</button>
+</div>
+
+<div id="requisitos-container">
+    <h1>Opiniones de Eventos</h1>
+    <h2>Requisitos para hacer un comentario</h2>
+    <p>Para hacer un comentario, asegúrate de cumplir con los siguientes requisitos:</p>
+    <ul>
+        <li>Tener una cuenta de usuario registrada</li>
+        <li>Haber asistido al evento que deseas comentar</li>
+        <li>Proporcionar una opinión y una puntuación</li>
+        <Li>Baja al final de la pagina para dejar tu opinión del evento</Li>
+    </ul>
+</div>
+
+<div id="opiniones-container"></div>
+
+<div id="login-container">
+    <form id="formulario-opinion">
+        <div class="mb-3">
+            <div class="login-container" style="text-align: center;">
+                <h2>Agregar un comentario</h2>
+                <a href="iniciarsesion.html" style="font-size: 16px;">Iniciar Sesión a la página para poder hacer la reserva</a><br><br>
+                <label for="nombre-evento" class="form-label">Nombre del evento</label>
+                <select class="form-select" id="nombre-evento" required>
+                    <option value="1">Concierto de Rosalia</option>
+                    <option value="2">Red Bull Batalla de los Gallos Nacional-Wizink Center</option>
+                    <option value="3">Concierto Bruce Springsteen</option>
+                    <option value="4">Kings League FInal split 1</option>
+                    <option value="5">Final Copa del Rey '23</option>
+                    <option value="6">Concierto Bad Bunny - San Mames</option>
+                    <option value="7">Concierto Tecnho, 5 salas/ 12 cantantes -Razzmatazz</option>
+                    <option value="8">Concierto de jazz en Apolo</option>
+                </select>
+
+
+                <div class="mb-3">
+                    <label for="opinion" class="form-label">Opinión</label>
+                    <textarea class="form-control" id="opinion" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="puntuacion" class="form-label">Puntuación</label>
+                    <select class="form-select" id="puntuacion" required>
+                        <option value="">Selecciona una puntuación</option>
+                        <option value="1">1 estrella</option>
+                        <option value="2">2 estrellas</option>
+                        <option value="3">3 estrellas</option>
+                        <option value="4">4 estrellas</option>
+                        <option value="5">5 estrellas</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-primary">Agregar comentario</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    function agregarComentario(event) {
+        event.preventDefault();
+        // Evitar el envío del formulario por defecto
+
+        const nombreEvento = document.getElementById('nombre-evento').value;
+        const opinion = document.getElementById('opinion').value;
+        const puntuacion = document.getElementById('puntuacion').value;
+
+        const comentario = {
+            nombreEvento: nombreEvento,
+            opinion: opinion,
+            puntuacion: puntuacion
+        };
+
+        fetch('/api/opiniones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(comentario)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                obtenerOpiniones();
+                document.getElementById('nombre-evento').value = '';
+                document.getElementById('opinion').value = '';
+                document.getElementById('puntuacion').value = '';
+            })
+            .catch(error => console.log(error));
+    }
+
+    function obtenerOpiniones() {
+        const ordenamiento = document.getElementById('ordenamiento').value;
+
+        fetch(`/api/opiniones?ordenar=${ordenamiento}`)
+            .then(response => response.json())
+            .then(data => {
+                const opinionesContainer = document.getElementById('opiniones-container');
+                opinionesContainer.innerHTML = '';
+
+                const opiniones = data.opiniones;
+
+                opiniones.forEach(opinion => {
+                    const opinionCard = document.createElement('div');
+                    opinionCard.className = 'opinion-card';
+                    opinionCard.innerHTML = `
+                    <h3>Id del evento: ${opinion.nombreEvento}</h3>
+                    <p>Opinion: ${opinion.opinion}</p>
+                    <p>Puntuación: ${opinion.puntuacion}</p>
+                    <hr>
+                `;
+                    opinionesContainer.appendChild(opinionCard);
+                });
+            })
+            .catch(error => console.log(error));
+    }
+    window.addEventListener('load', obtenerOpiniones);
+
+    const formularioOpinion = document.getElementById('formulario-opinion');
+    formularioOpinion.addEventListener('submit', agregarComentario);
+    const ordenarBtn = document.getElementById('ordenar-btn');
+    ordenarBtn.addEventListener('click', obtenerOpiniones);
+
+</script>
+</body>
+</html>

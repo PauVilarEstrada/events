@@ -1,0 +1,211 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Recintos</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+        <link rel="stylesheet" href="stylesheets/style.css">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.10/jsrender.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"
+                integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/navigo/8.11.1/navigo.min.js" referrerpolicy="no-referrer"></script>
+
+    </head>
+    <body>
+    <div class="container">
+        <div class="row">
+            <a href="/" class="button2">INICIO</a>
+
+            <script id="modify_recinto_template" type="text/x-handlebars-template">
+                <h1>Modificar Recinto</h1>
+                <form id="modify_recinto_form">
+                    <label for="idRecinto">ID Recinto</label>
+                    <input type="text" id="idRecinto" name="idRecinto" value="{{:idRecinto}}">
+                    <br>
+
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" value="{{:nombre}}">
+                    <br>
+
+                    <label for="direccion">Dirección</label>
+                    <input type="text" id="direccion" name="direccion" value="{{:direccion}}">
+                    <br>
+
+                    <label for="superficie">Superficie</label>
+                    <input type="text" id="superficie" name="superficie" value="{{:superficie}}">
+                    <br>
+
+                    <label for="foto">Foto</label>
+                    <input type="text" id="foto" name="foto" value="{{:foto}}">
+                    <br>
+
+                    <input type="submit" id="modify_recinto_submit_btn">
+                </form>
+            </script>
+
+            <div id="app"></div>
+        </div>
+    </div>
+
+    <script>
+        const router = new Navigo('/', {hash: true});
+        router
+            .on('/', showRecintos)
+            .on('/recintos.html', showRecintos)
+            .on('/add', showInsertRecintoForm)
+            .on('/modify', showModifyRecintoForm)
+            .on('/delete', deleteRecinto)
+            .resolve();
+
+         function showInsertRecintoForm() {
+            let html = `
+            <h1>Insertar Recinto</h1>
+            <form id="insert_recinto_form">
+                <label for="idRecinto">ID Recinto</label>
+                <input type="text" id="idRecinto" name="idRecinto">
+                <br>
+
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre">
+                <br>
+
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" name="direccion">
+                <br>
+
+                <label for="superficie">Superficie</label>
+                <input type="text" id="superficie" name="superficie">
+                <br>
+
+                <label for="foto">Foto</label>
+                <input type="text" id="foto" name="foto">
+                <br>
+
+                <input type="submit" value="SAVE">
+            </form>
+            `;
+            $("#app").html(html);
+
+            $("#insert_recinto_form").on("submit", function (event) {
+                event.preventDefault();
+                getRecintoFormParams($(this).serializeObject());
+            });
+         }
+
+
+        function getRecintoFormParams(formData) {
+            event.preventDefault();
+            let idRecinto = formData.idRecinto;
+            let nombre = formData.nombre;
+            let direccion = formData.direccion;
+            let superficie = formData.superficie;
+            let foto = formData.foto;
+
+            $.ajax({
+                url: '/api/recinto',
+                type: 'POST',
+                data: {
+                    idRecinto: idRecinto,
+                    nombre: nombre,
+                    direccion: direccion,
+                    superficie: superficie,
+                    foto: foto
+                },
+                success: function (response) {
+                    console.log('Recinto guardado exitosamente');
+                    router.navigate('/recintos.html');
+                },
+                error: function (error) {
+                    console.log('Error al guardar el recinto:', error);
+                }
+            });
+        }
+
+
+        function deleteRecinto(params) {
+            let id = params.params.id;
+
+
+            $.ajax({
+                url: '/api/recintos/' + id,
+                type: 'DELETE',
+                success: function (response) {
+                    console.log('Recinto eliminado');
+                    router.navigate('/recintos.html');
+                },
+                error: function (error) {
+                    console.log('Error al eliminar el recinto:', error);
+                }
+            });
+        }
+
+
+        function getModifyRecintoFormParams(id, event) {
+            event.preventDefault();
+
+            let form = $('#modify_recinto_form');
+            let parametros = form.serializeObject();
+
+            fetch('/api/recintos/' + id, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(parametros)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        showRecintos();
+                    } else {
+                        console.log('Error al modificar el recinto');
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
+
+        function showModifyRecintoForm(params) {
+            let id = params.params.id;
+
+            fetch('/api/recintos/' + id)
+                .then(response => response.json())
+                .then(data => {
+                    let html = $("#modify_recinto_template").render(data);
+                    $("#app").html(html);
+                    $("#modify_recinto_submit_btn").on("click", event => getModifyRecintoFormParams(id, event));
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
+
+        function showRecintos() {
+
+            fetch('/api/recintos')
+                .then(response => response.json())
+                .then(data => {
+
+                    let html = $("#show_recintos_template").render(data);
+                    $("#app").html(html);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
+
+        $(document).ready(function () {
+            router.navigate('/');
+        });
+    </script>
+    </body>
+    </html>

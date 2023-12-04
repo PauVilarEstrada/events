@@ -1,0 +1,19 @@
+PARTICIPANTES: Lindyaneeh y Pau
+
+si pones en la url la api y cada tabla ej: /api/eventos
+aparece
+En eventos EL MODIFY NO FUNCIONAN
+En eventos, delete y añadir funcionan
+
+en Opiniones se ve todos los comentarios pero se ve cada id
+en Opiniones el "ordenar Por:" no funciona
+
+No se guarda la reserva
+
+Hemos creado los users para hacer login pero no funcionan correctamente
+
+ADMIN: username: 'Lindyaneeh@ayun.com', password: 'Lineseladmin'
+CLIENT:  username: 'Pau@ayun.com', password: 'Paueseluser'
+y aparece el correo y contraseña en la url
+
+Claramente Iniciar Sesión y crear cuenta es un interfaz.

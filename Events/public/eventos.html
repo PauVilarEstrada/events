@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.jsviews.com/download/jsviews.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"
+            integrity="sha512-Gn0tSSjkIGAkaZQWjx3Ctl/0dVJuTmjW/f9QyB302kFjU4uTNP4HtA32U2qXs/TRlEsK5CoEqMEMs7LnzLOBsA=="
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/navigo/8.11.1/navigo.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+<div class="container">
+
+    <a href="/" class="button2">INICIO</a>
+
+    <script id="add_evento_template" type="text/x-handlebars-template">
+        <h1>Añadir nuevo evento</h1>
+        <form id="add_evento_form">
+            <label for="nombreEvento">Nombre del evento</label>
+            <input type="text" id="nombreEvento" name="nombreEvento">
+            <br>
+
+            <label for="foto">Imagen</label>
+            <input type="text" id="foto" name="foto">
+            <br>
+            <label for="descripcion">Descripcion</label>
+            <input type="text" id="descripcion" name="descripcion">
+            <br>
+            <label for="fecha">Fecha</label>
+            <input type="text" id="fecha" name="fecha">
+            <br>
+            <label for="hora">Hora</label>
+            <input type="text" id="hora" name="hora">
+            <br>
+            <label for="precio">Precio</label>
+            <input type="text" id="precio" name="precio">
+            <br>
+            <input type="submit" id="add_evento_form_submit">
+        </form>
+    </script>
+
+    <script id="informacionEspecificaEvento_template" type="text/x-handlebars-template">
+        <h1>{{:nombreEvento}}</h1>
+        <form id="infoEvento_form">
+            <p><img src="{{:foto}}" class="imagen_evento"/></p>
+            <p>{{:descripcion}}</p>
+            <p>{{:fecha}} {{:hora}}</p>
+            <p>{{:precio}}</p>
+            <button id="reservar-entrada">Reserva tu entrada</button>
+        </form>
+    </script>
+
+    <script id="show_eventos_template" type="text/x-handlebars-template">
+        <h1>Lista de Eventos</h1>
+        <a href="#/add" id="add_evento_btn" class="btn btn-primary">Añadir evento</a>
+        <div class="card-container">
+
+        {{for eventos}}
+            <div class="card">
+                <div id="event-details">
+                    <div class="column">
+                        <p><img src="{{:foto}}" class="imagen_evento"/></p>
+                        <div class="container">
+                            <p>Nombre del evento</p>
+                            <p id="informacionEspecificaEvento">{{:nombreEvento}}</p>
+                            <p>Fecha y hora</p>
+                            <p id="informacionEspecificaEvento">{{:fecha}} {{:hora}}</p>
+                            <p>Precio:
+                            <p id="informacionEspecificaEvento">{{:precio}}</p>
+                            </p>
+                            <div class="card-actions">
+                                <a href="opiniones.html" class="verOpiniones buttonlittle3">Ver Opiniones</a>
+                                <a href="reservas.html" class="hacerReserva buttonlittle">hacer Reserva</a>
+                                <a href="#/infoEvento?id={{:id}}" class="verMasInfo btn btn-success">Ver mas información</a>
+                                <a href="#/modify?id={{:id}}" class="modify btn btn-warning">Modify</a>
+                                <a href="#/delete?id={{:id}}" class="delete btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        {{/for}}
+        </div>
+    </script>
+
+
+    <div id="app"></div>
+</div>
+</div>
+<script>
+    const router = new Navigo('/', {hash: true});
+    router.on('/', showEventos)
+        .on('/eventos.html', showEventos)
+        .on('/add', showInsertEventosForm)
+        .on('/modify', showModifyEventosForm)
+        .on('/delete', deleteEvento)
+        .on('/iniciar_sesion', iniciarSesionUsuarioEventos)
+        .on('/crear_cuenta_nueva', crearCuentaNuevaUsuarioEventos)
+        .on('/infoEvento', mostrarDatosEvento)
+        .resolve();
+
+    function showInsertEventosForm() {
+        $.getJSON('/api/eventos/', function (eventos) {
+            let html = $("#add_evento_template").render(eventos);
+            $("#app").html(html);
+            $("#add_evento_form_submit").on("click", getEventoFormParams);
+
+        });
+    }
+    function getEventoFormParams(event) {
+        event.preventDefault();
+
+        let form = $("#add_evento_form");
+        let parametros = form.serializeObject();
+        $.post('/api/eventos/', parametros, function (result) {
+            router.navigate('/')
+        }).catch(function (error) {
+            console.log(error)
+        })
+    }
+
+
+
+    function showModifyEventosForm(event) {
+
+    }
+
+    function deleteEvento(params) {
+        let id = params.params.id;
+
+        $.ajax({
+            url: 'api/eventos/' + id,
+            type: 'DELETE'
+        }).then(function (result) {
+            router.navigate('/')
+        }).catch(function (error) {
+            console.log(error)
+
+        });
+    }
+
+    function iniciarSesionUsuarioEventos() {
+
+    }
+
+    function crearCuentaNuevaUsuarioEventos() {
+
+    }
+
+    function mostrarDatosEvento(eventData) {
+        const eventDetailsElement = document.getElementById('event-details');
+        eventDetailsElement.innerHTML = '';
+
+        // Obtén el contenido de la plantilla Handlebars
+        const eventDetailsTemplate = document.getElementById('evento_details_template').innerHTML;
+
+        // Compila la plantilla Handlebars
+        const template = Handlebars.compile(eventDetailsTemplate);
+
+        // Renderiza la plantilla con los datos del evento
+        const html = template(eventData);
+
+        // Agrega el HTML resultante al elemento del DOM
+        eventDetailsElement.innerHTML = html;
+
+        // Agrega el event listener al botón "Reservar entrada"
+        const reservarEntradaButton = document.getElementById('reservar-entrada');
+        reservarEntradaButton.addEventListener('click', function () {
+            alert('Por favor, inicia sesión para reservar una entrada.');
+            window.location.href = 'iniciarSesion.html';
+        });
+    }
+
+
+    function showEventos() {
+        $.getJSON('/api/eventos', function (dataEventos) {
+            let html = $("#show_eventos_template").render(dataEventos);
+            $("#app").html(html);
+        });
+    }
+
+    $(document).ready(function () {
+        router.navigate('/')
+    });
+</script>
+</body>
+</html>
+

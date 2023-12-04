@@ -1,0 +1,498 @@
+/*
+body {
+
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+ul {
+  font-size: 25px;
+}
+
+body {
+  background-image: url("https://b7q5h9f5.rocketcdn.me/wp-content/uploads/2020/05/conciertos-1589446877-1024x500.jpg");
+  background-size: 1800px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.container p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.container p.highlight {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 30px;
+}
+
+.container p.call-to-action {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.container p.call-to-action a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: block;
+  margin-bottom: 10px;
+  border: none;
+}
+
+li a {
+  text-decoration: none;
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 30px;
+  color: snow;
+}
+
+li a:hover {
+  background-color: #333;
+}
+
+#iniciarSesion {
+  font-size: 18px;
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 70px;
+  color: #333333;
+}
+
+.container p.call-to-action {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.container p.call-to-action a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+#iniciarSesion {
+  font-size: 20px;
+  text-align: center;
+  top: 0;
+  right: 0;
+}
+
+body {
+  background-color: #f8f8f8;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 40%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btn-primary {
+  width: 100%;
+}
+
+
+ */
+body {
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("https://b7q5h9f5.rocketcdn.me/wp-content/uploads/2020/05/conciertos-1589446877-1024x500.jpg");
+  background-size: 1350px;
+  background-position: center;
+}
+
+.registro-container,
+.login-container,
+.contacto-container,
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+
+}
+
+.registro-container h1,
+.login-container h1,
+.contacto-container h1,
+.about-container h1{
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.highlight {
+  background-color: yellow;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.call-to-action {
+  font-size: 20px;
+  text-align: center;
+}
+
+.call-to-action a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #ff4081;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.call-to-action a:hover {
+  background-color: #ff005d;
+}
+
+.button2 {
+  display: inline-block;
+  padding: 20px 40px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #555555;
+  color: #fff;
+  border-radius: 10px;
+}
+.ordenar-container {
+  width: 200px;
+  margin-right: auto;
+  border: 1px solid white;
+}
+#opiniones-container {
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+/* Estilos para cada opinión */
+.opinion-card {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.opinion-card h3 {
+  margin-top: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.opinion-card p {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.opinion-card hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 10px 0;
+}
+
+.opinion-card .opinion-preview {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Número máximo de líneas */
+  -webkit-box-orient: vertical;
+}
+
+.opinion-card .leer-mas {
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* Estilos para los requisitos de comentario */
+#requisitos-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+#requisitos-container h2 {
+  margin-top: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+#requisitos-container p {
+  margin-bottom: 5px;
+  color: #555;
+}
+.buttonlittle {
+  background-color: #002bff;
+  color: white;
+  font-size: 18px;
+  padding: initial;
+  border: 1px solid blue;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+}
+
+.buttonlittle3 {
+  background-color: #ff0fec;
+  color: white;
+  font-size: 18px;
+  padding: initial;
+  border: 1px solid #ff0fec;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+}
+
+
+
+
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
+
+.registro-container p,
+.login-container p,
+.contacto-container p {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.container h1 {
+  text-align: center;
+  color: #333;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.container form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.container .form-group label {
+  font-size: 18px;
+}
+
+.container .form-group input {
+  padding: 12px;
+}
+
+.container .btn-primary {
+  padding: 12px;
+  font-size: 18px;
+}
+
+.container p {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.container p a {
+  text-decoration: none;
+  color: #333;
+}
+
+.eventos-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.eventos-container h1 {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+li a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 8px 16px;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 18px;
+  background-color: #333;
+}
+
+li a:hover {
+  background-color: #555;
+}
+
+.iniciar-sesion-link {
+  font-size: 18px;
+  text-decoration: underline;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-sm-6 {
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+.mx-auto {
+  margin-right: auto;
+  margin-left: auto;
+}
+.imagen_evento{
+  width: 120%;
+  height: auto;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+}.card-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+ }
+
+.card {
+  flex: 0 0 25%;
+  margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  background-color: #fff;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+p{
+  color: black;
+}
+#informacionEspecificaEvento{
+  text-align: center;
+  color: #ff005d;
+  font-weight: bold;
+}
